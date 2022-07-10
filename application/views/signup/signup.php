@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -57,8 +57,8 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-primary" href="<?= base_url() ?>signup">
-                  <strong>Sign up</strong>
+                <a class="button is-primary" href="login">
+                  <strong>Login</strong>
                 </a>
               </div>
             </div>
@@ -66,17 +66,38 @@
         </div>
       </nav>
       <div class="section">
+      <div class="error"><?=$this->session->flashdata('input_errors');?></div>
         <div class="columns">
           <div class="column is-one-quarter">
-            <form action="signin" method="post">
-              <div class="error"></div>
-            <h1 class="title">Login</h1>
+            <h1 class="title">Register</h1>
             <div class="field">
+              <form action="validate" method="post">
+
                 <label class="label">Email Address</label>
                 <div class="field-body">
                   <div class="field">
                     <p class="control">
                       <input class="input" type="email" name="email" placeholder="Recipient email">
+                    </p>
+                  </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">First Name</label>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" type="text" name="firstname" placeholder="First Name">
+                    </p>
+                  </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Last Name</label>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" type="text" name="lastname" placeholder="Last Name">
                     </p>
                   </div>
                 </div>
@@ -91,13 +112,23 @@
                 </div>
               </div>
             </div>
+            <div class="field">
+                <label class="label">Confirm Password</label>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input" type="password" name="confirm_password" placeholder="Password">
+                    </p>
+                  </div>
+                </div>
+              </div>
             <div class="buttons is-right">
               <input type="submit" class="button is-info is-light" value="Login">
-              </form>
             </div>
+              </form>
             <div class="columns has-text-centered">
               <div class="column">
-                <p class="has-text-link"><a href="signup">Don't have an account? Register</a></p>
+                <p class="has-text-link"><a href="login">Already have an account? Login</a></p>
               </div>
             </div>
           </div>
