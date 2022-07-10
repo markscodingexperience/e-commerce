@@ -40,14 +40,18 @@ class Users extends CI_Controller {
 	}
 
 	public function signin(){
-		$current_user_id = $this->session->userdata('user_id');
-		if($current_user_id == '2'){
-			$this->load->view('user/user');
-		}else if($current_user_id == '1'){
-			$this->load->view('dashboard/dashboard');
+		$result = $this->User->test_login_fields();
+		echo validation_errors();
+		if($result == 'Success'){
+			$data = $this->User->get_details($this->input->post('email'));
+			if($data['user_level'] == '1'){
+				$this->load->view('admin/admin');
+			}else{
+				$this->load->view('user/user');
+			}
 		}
-		$this->User->test_login_fields();
-		redirect("/");
+
+		// redirect("/");
 	}
 
 	public function logout(){

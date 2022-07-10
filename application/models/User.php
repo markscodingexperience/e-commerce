@@ -32,7 +32,8 @@ class User extends CI_Model {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[10]');
-        if(!$this->form_validation->run()) {
+        $email = $this->get_user_by_email($this->input->post('email'));
+        if(!$this->form_validation->run() || $email == 'NULL' || $email == NULL) {
             return validation_errors();
         }else{
             return "Success";
